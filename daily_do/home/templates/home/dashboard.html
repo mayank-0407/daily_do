@@ -84,6 +84,7 @@
                           {% csrf_token %}
                           <button type="submit" class="btn btn-primary">Show All</button>
                         </form>
+                        <a href="{% url 'send_task_trigger' %}" class="btn btn-primary">Send Email</a>
                         {% comment %} <p class="small mb-0 me-2 text-muted">Filter</p>
                         <select class="select" name="type">
                           <option value="1" id="filter_all">All</option>

@@ -14,6 +14,9 @@ from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 
 # Create your views here.
+def temp(request):
+    return render(request,'home/send_task.html')
+
 def SENDMAIL(subject, message, email):
     print('insideeee send imailwa')
     email_from = settings.EMAIL_HOST_USER
@@ -24,6 +27,22 @@ def SENDMAIL(subject, message, email):
         print('nhi mili bhai email')
     username = checker.first_name
     html_content = render_to_string("home/main_email.html",{'message': message, 'user_name': username})
+    text_content = strip_tags(html_content)
+    email = EmailMultiAlternatives(subject,text_content,email_from,recipient_list)
+    email.mixed_subtype = 'related'
+    email.attach_alternative(html_content,"text/html")
+    email.send()
+
+def SENDTASK(subject, message, email):
+    print('insideeee send imailwa')
+    email_from = settings.EMAIL_HOST_USER
+    recipient_list = [email, ]
+    try:
+        checker = User.objects.get(email=email)
+    except:
+        print('nhi mili bhai email')
+    username = checker.first_name
+    html_content = render_to_string("home/send_task.html",{'message': message, 'user_name': username})
     text_content = strip_tags(html_content)
     email = EmailMultiAlternatives(subject,text_content,email_from,recipient_list)
     email.mixed_subtype = 'related'
@@ -55,6 +74,30 @@ def send_activate_email(user,email):
             return True
         except:
             return False
+
+def send_task_email(user,email):
+    try:
+        try:
+            myuser=User.objects.get(email=user.email)
+            print(myuser)
+            mymessage=Works.objects.filter(user=myuser)
+        except:
+            print('messagewa nhi mila')
+        email_subject='Task List From Daily_do'
+        SENDTASK(email_subject,mymessage,email)
+        return True
+    except:
+        return False
+        
+def send_task_trigger(request):
+    user=User.objects.get(email=request.user.email)
+    email=request.user.email
+    if send_task_email(user,email):
+        messages.success(request,'Email Sent Successfully')
+        return redirect('dashboard')
+    else:
+        messages.error(request,'Email Not Sent')
+        return redirect('dashboard')
         
 def signin(request):
     if request.user.is_authenticated:
