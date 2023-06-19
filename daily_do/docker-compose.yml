@@ -1,0 +1,8 @@
+version: '1'
+
+services:
+  django:
+    image: daily_do_image:0.0.1
+    build: .
+    ports:
+      - "8000:8000"
