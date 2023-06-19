@@ -1,14 +1,14 @@
 FROM python:3.10
-WORKDIR /app
+WORKDIR .
 
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install -r requirements.txt
 
 COPY . .
 
 ENV DJANGO_SETTINGS_MODULE=daily_do.settings
 
-EXPOSE 80
+EXPOSE 8000
 
 # Start the Django development server
-CMD ["python", "manage.py", "runserver", "0.0.0.0:80"]
+CMD ["python", "manage.py", "runserver","0.0.0.0:8000"]
