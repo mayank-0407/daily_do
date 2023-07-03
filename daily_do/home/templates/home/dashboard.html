@@ -8,7 +8,7 @@
         <link rel="icon" href="{% static 'logo.svg' %}" type="image/icon type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
+        <link rel="stylesheet" href="{% static 'dashboard.css' %}">
         <style>
             #list1 .form-control {
                 border-color: transparent;
@@ -67,10 +67,10 @@
                             <div class="d-flex flex-row align-items-center">
                               <input type="text" name="main_text" class="form-control form-control-lg" id="exampleFormControlInput1"
                                 placeholder="Add new...">
-                              <a href="#!" data-mdb-toggle="tooltip" title="Set due date"><i
-                                  class="me-3"><input type="date" name="date"></i></a>
-                              <div>
-                                <button type="submit" class="btn btn-primary">Add</button>
+                              <a href="#!" data-mdb-toggle="tooltip" class="date_box" title="Set due date"><i
+                                  class="me-3 date_box"><input type="date" style="width:28px" name="date"></i></a>
+                              <div class="add_btn_change">
+                                <button type="submit" class="btn btn-primary" id="tempbutton">Add</button>
                               </div>
                             </div>
                         </div>

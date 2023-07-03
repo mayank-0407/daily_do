@@ -18,7 +18,6 @@ def temp(request):
     return render(request,'home/send_task.html')
 
 def SENDMAIL(subject, message, email):
-    print('insideeee send imailwa')
     email_from = settings.EMAIL_HOST_USER
     recipient_list = [email, ]
     try:
@@ -26,7 +25,8 @@ def SENDMAIL(subject, message, email):
     except:
         print('nhi mili bhai email')
     username = checker.first_name
-    html_content = render_to_string("home/main_email.html",{'message': message, 'user_name': username})
+    html_content = render_to_string("home/main_email.html",{"message": message, "user_name": username})
+    print('insideeee send imailwa')
     text_content = strip_tags(html_content)
     email = EmailMultiAlternatives(subject,text_content,email_from,recipient_list)
     email.mixed_subtype = 'related'
@@ -122,10 +122,10 @@ def signin(request):
             try:
                 if send_activate_email(verify_user,verify_user.email):
                     messages.error(request, 'Your Email is not yet verified. So we have Sent Link to your email ,verify that to continue')
-                    return redirect('signup')  
+                    return redirect('signin')  
                 else:
                     messages.error(request, 'Your Email is not yet verified, Unable to send link')
-                    return redirect('signup')  
+                    return redirect('signin')  
             except:
                 print('Unable to send email')
         try:

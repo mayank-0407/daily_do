@@ -134,4 +134,4 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = "mayank.tempdata@gmail.com"
 EMAIL_HOST_PASSWORD = "#"
 
-BASE_URL_EMAIL="http://127.0.0.1:8000"
+BASE_URL_EMAIL="http://dailydo.mayankaggarwal.me"

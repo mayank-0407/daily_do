@@ -1,0 +1,28 @@
+/* #date_box{
+    width: 3px;
+    height: 10px;
+    border: 0px solid blue;
+    box-sizing: border-box;
+} */
+input[type="date"]{
+    background-color: #0080ff;
+    color: rgba(242, 242, 245, 0);
+    padding: 4px;
+    /* color: #ffffff; */
+    font-size: 16px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    align-items: center;
+}
+
+@media (max-width: 327px) {
+    #tempbutton {
+        width: 35px; /* Set the desired width */
+        height: 35px;
+        font-size: 10px;
+        padding: 1px;
+        margin: 0px;
+    }
+
+}
