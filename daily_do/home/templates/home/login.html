@@ -44,7 +44,7 @@
         
                 <div class="row d-flex justify-content-center">
                 <div class="col-lg-8">
-                <form action="./" method="POST" enctype="multipart/form-data">
+                <form action="./" method="POST" onsubmit ="return validate_password()" enctype="multipart/form-data">
                     {% csrf_token %}
                     <h2 class="fw-bold mb-5">Sign In Now</h2>
                     {% for message in messages %}
@@ -52,6 +52,7 @@
                     <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
                     </div>
                     {% endfor %}
+                    <p id="passcheckerror" style="font-size: 10px; color: #FF0000;"></p>
                     <form>
                     <!-- 2 column grid layout with text inputs for the first and last names -->
                     {% comment %} <div class="row">
@@ -78,7 +79,7 @@
         
                     <!-- Password input -->
                     <div class="form-outline mb-4">
-                        <input type="password" id="form3Example4" name="pass1" for="pass1" class="form-control" />
+                        <input type="password" id="password1" name="pass1" for="pass1" class="form-control" />
                         <label class="form-label" for="form3Example4">Password</label>
                     </div>
         
@@ -128,4 +129,5 @@
         ></script>
         <script src="" async defer></script>
     </body>
+    <script src="{% static 'pass_check.js' %}"></script>  
 </html>
